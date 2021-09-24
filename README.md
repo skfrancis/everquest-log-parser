@@ -1,1 +1,1 @@
-# everquest-log-parser
+# Everquest Log Parser
