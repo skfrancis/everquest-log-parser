@@ -32,6 +32,29 @@ class ChatFilter(BasicFilter):
         return data
 
 
+class DiceFilter(BasicFilter):
+    def __init__(self, debug=False):
+        self.name = 'Random Rolls'
+        columns = ['Date', 'Time', 'Source', 'Minimum', 'Maximum', 'Roll']
+        regexes = [
+            r"^\*\*A Magic Die .*? by (\w+). .*? from (\d+) to (\d+), .*? a (\d+).$"
+        ]
+        super().__init__(name, columns, regexes, debug)
+
+    def process_data(self, timestamp, result):
+        data = {
+            self.columns[0]: timestamp.strftime('%x'),
+            self.columns[1]: timestamp.strftime('%X'),
+            self.columns[2]: result.group(1),
+            self.columns[3]: result.group(2),
+            self.columns[4]: result.group(3),
+            self.columns[3]: result.group(4)
+        }
+        if self.debug:
+            data['debug'] = result.string
+        return data
+
+
 class LocationFilter(BasicFilter):
     def __init__(self, debug=False):
         name = 'Location'

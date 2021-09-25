@@ -21,7 +21,6 @@ from docopt import docopt
 def main():
     log_file = Path(arguments.get('--log'))
     debug = arguments.get('--debug')
-    print(debug)
     if log_file:
         parser = LineParser(debug=debug)
         filterer = LineFilter(debug=debug)
@@ -38,6 +37,6 @@ def main():
 
 
 if __name__ == '__main__':
-    version = '0.0.1'
+    version = '0.0.2'
     arguments = docopt(__doc__, help=True, options_first=True, version=version)
     main()

@@ -124,3 +124,19 @@ class DeathFilter(FightFilter):
         if self.debug:
             data['debug'] = result.string
         return data
+
+
+class BattleFilter:
+    def __init__(self, debug=False):
+        self.name = 'Battle'
+        self.debug = debug
+        self.filters = [
+            PhysicalFilter(self.debug), SpellFilter(self.debug), HealingFilter(self.debug), DeathFilter(self.debug)
+        ]
+
+    def filter(self, log_line):
+        for battle_filter in self.filters:
+            result = battle_filter.filter(log_line)
+            if result:
+                return result
+        return None
