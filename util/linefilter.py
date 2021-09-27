@@ -7,16 +7,15 @@ from filters.generalfilters import PartyFilter, TradesFilter, SystemMessageFilte
 
 
 class LineFilter:
-    def __init__(self, debug=False):
-        self.debug = debug
+    def __init__(self):
         self.filters = [
-            BattleFilter(self.debug), PetLeaderFilter(self.debug), CastingFilter(self.debug),
-            LootFilter(self.debug), LootCoinFilter(self.debug), LootRotFilter(self.debug),
-            ExpFilter(self.debug), ExpAAFilter(self.debug), SkillUpFilter(self.debug),
-            FactionFilter(self.debug), ConsiderFilter(self.debug), PartyFilter(self.debug),
-            WhoFilter(self.debug), ZoneFilter(self.debug), ChatFilter(self.debug),
-            LocationFilter(self.debug), TradesFilter(self.debug), SystemMessageFilter(self.debug),
-            DiceFilter(self.debug)
+            BattleFilter(), PetLeaderFilter(), CastingFilter(),
+            LootFilter(), LootCoinFilter(), LootRotFilter(),
+            ExpFilter(), ExpAAFilter(), SkillUpFilter(),
+            FactionFilter(), ConsiderFilter(), PartyFilter(),
+            WhoFilter(), ZoneFilter(), ChatFilter(),
+            LocationFilter(), TradesFilter(), SystemMessageFilter(),
+            DiceFilter()
         ]
 
     def filter_line(self, parsed_line):

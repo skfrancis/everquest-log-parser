@@ -4,14 +4,14 @@ from filters.basicfilter import BasicFilter
 
 
 class FightFilter(BasicFilter, ABC):
-    def __init__(self, regexes, debug=False):
+    def __init__(self, regexes):
         self.name = 'Fight'
         self.columns = ['Timestamp', 'Source', 'Target', 'Amount', 'Ability', 'Mod', 'Type']
-        super().__init__(self.name, self.columns, regexes, debug)
+        super().__init__(self.name, self.columns, regexes)
 
 
 class PhysicalFilter(FightFilter):
-    def __init__(self, debug=False):
+    def __init__(self):
         regexes = [
             r"^(?P<source>.+?) (?P<dmgtype>\bhit|shoot|kick|slash|crush|pierce|bash|slam|strike|punch|backstab|"
             r"bite|claw|smash|slice|gore|maul|rend|burn|sting|frenzy on|frenzies on\b)e?s? (?!by non-melee)"
@@ -22,7 +22,7 @@ class PhysicalFilter(FightFilter):
             r"parries|dodge|block|blocks with \w\w\w shield|INVULNERABLE|magical skin absorbs the blow)e?s?!"
             r"(?: \((?P<mod>[\w\s]+)\))?"
         ]
-        super().__init__(regexes, debug)
+        super().__init__(regexes)
 
     def process_data(self, timestamp, result):
         miss_data = {'parries': 'parry', 'blocks with': 'block', 'magical skin absorbs': 'magical skin'}
@@ -39,13 +39,11 @@ class PhysicalFilter(FightFilter):
             self.columns[5]: mod,
             self.columns[6]: filter_type
         }
-        if self.debug:
-            data['debug'] = result.string
         return data
 
 
 class SpellFilter(FightFilter):
-    def __init__(self, debug=False):
+    def __init__(self):
         regexes = [
             r"^(?P<source>.+?) hit (?P<target>.+?) for (?P<amount>\d+) points? of .+? damage by (?P<spell>.+?)"
             r"\.(?: \((?P<mod>[\w\s]+)\))?$",
@@ -56,7 +54,7 @@ class SpellFilter(FightFilter):
             r"^(?P<target>.+) (?P<amount>resist)ed (?P<source>you)r (?P<spell>.+?)!(?: \((?P<mod>[\w\s]+)\))?",
             r"^(?P<target>You) (?P<amount>resist) (?P<source>.+?)'s (?P<spell>.+)!(?: \((?P<mod>[\w\s]+)\))?"
         ]
-        super().__init__(regexes, debug)
+        super().__init__(regexes)
 
     def process_data(self, timestamp, result):
         filter_type = 'spell hit' if result.group('amount').isnumeric() else 'spell miss'
@@ -70,20 +68,18 @@ class SpellFilter(FightFilter):
             self.columns[5]: mod,
             self.columns[6]: filter_type
         }
-        if self.debug:
-            data['debug'] = result.string
         return data
 
 
 class HealingFilter(FightFilter):
-    def __init__(self, debug=False):
+    def __init__(self):
         regexes = [
             r"^(?P<source>.+?) healed (?P<target>.+?) over time for (?P<actual>\d+)(?: \((?P<max>\d+)\))? "
             r"hit points by (?P<spell>.+?)\.(?: \((?P<mod>.+?)\))?",
             r"^(?P<source>.+?) healed (?P<target>.+?) for (?P<actual>\d+)(?: \((?P<max>\d+)\))? "
             r"hit points(?: by (?P<spell>.+?))?\.(?: \((?P<mod>.+?)\))?"
         ]
-        super().__init__(regexes, debug)
+        super().__init__(regexes)
 
     def process_data(self, timestamp, result):
         maximum = result.group('max') if result.group('max') is not None else result.group('actual')
@@ -97,19 +93,17 @@ class HealingFilter(FightFilter):
             self.columns[5]: mod,
             self.columns[6]: 'heal'
         }
-        if self.debug:
-            data['debug'] = result.string
         return data
 
 
 class DeathFilter(FightFilter):
-    def __init__(self, debug=False):
+    def __init__(self):
         regexes = [
             r"^(?P<target>.+) (?:have|has) been slain by (?P<source>.+)!$",
             r"^(?P<source>You) have slain (?P<target>.+)!$",
             r"^(?P<source>(?P<target>.+)) dies?d?\.$"
         ]
-        super().__init__(regexes, debug)
+        super().__init__(regexes)
 
     def process_data(self, timestamp, result):
         data = {
@@ -121,17 +115,14 @@ class DeathFilter(FightFilter):
             self.columns[5]: None,
             self.columns[6]: 'death'
         }
-        if self.debug:
-            data['debug'] = result.string
         return data
 
 
 class BattleFilter:
-    def __init__(self, debug=False):
+    def __init__(self):
         self.name = 'Battle'
-        self.debug = debug
         self.filters = [
-            PhysicalFilter(self.debug), SpellFilter(self.debug), HealingFilter(self.debug), DeathFilter(self.debug)
+            PhysicalFilter(), SpellFilter(), HealingFilter(), DeathFilter()
         ]
 
     def filter(self, log_line):

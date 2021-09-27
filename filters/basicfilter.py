@@ -3,11 +3,10 @@ from abc import ABC, abstractmethod
 
 
 class BasicFilter(ABC):
-    def __init__(self, name, columns, regexes, debug=False):
+    def __init__(self, name, columns, regexes):
         self.name = name
         self.columns = columns
         self.regexes = regexes
-        self.debug = debug
 
     def filter(self, log_line):
         for expression in self.regexes:
@@ -15,8 +14,6 @@ class BasicFilter(ABC):
             if result:
                 timestamp = log_line.get('timestamp')
                 filtered_data = self.process_data(timestamp, result)
-                if self.debug:
-                    print(filtered_data)
                 return filtered_data
         return None
 
