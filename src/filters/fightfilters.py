@@ -1,6 +1,6 @@
 from abc import ABC
 from string import capwords
-from filters.basicfilter import BasicFilter
+from src.filters.basicfilter import BasicFilter
 
 
 class FightFilter(BasicFilter, ABC):

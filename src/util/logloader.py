@@ -1,6 +1,6 @@
 import logging
 from pathlib import Path
-from util.lineparser import LineParser
+from src.util.lineparser import LineParser
 
 
 class LogLoader:

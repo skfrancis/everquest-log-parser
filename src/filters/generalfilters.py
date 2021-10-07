@@ -1,4 +1,4 @@
-from filters.basicfilter import BasicFilter
+from src.filters.basicfilter import BasicFilter
 
 
 class ChatFilter(BasicFilter):
@@ -12,11 +12,11 @@ class ChatFilter(BasicFilter):
         super().__init__(name, columns, regexes)
 
     def process_data(self, timestamp, result):
-        channel = result.group(2).capitalize()
         target = None
-        if channel.islower() == 'you' or result.string.startswith('You told'):
+        channel = result.group(2).capitalize()
+        if result.group(2) == 'you' or result.string.startswith('You told'):
+            target = channel
             channel = 'Tell'
-            target = result.group(2)
         if 'out of character' in result.group(2):
             channel = 'OoC'
         data = {
@@ -46,7 +46,7 @@ class DiceFilter(BasicFilter):
             self.columns[2]: result.group(1),
             self.columns[3]: result.group(2),
             self.columns[4]: result.group(3),
-            self.columns[3]: result.group(4)
+            self.columns[5]: result.group(4)
         }
         return data
 
