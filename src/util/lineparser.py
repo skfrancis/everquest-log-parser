@@ -11,16 +11,17 @@ class LineParser:
 
     def parse_line(self, line_data):
         data = {}
-        result = re.match(self.line_regex, line_data)
-        if result:
-            data['timestamp'] = self.convert_date(result.group(1))
-            data['text'] = result.group(2)
-        else:
-            self.logger.debug(f"Parsing Failed: {line_data.rstrip()}")
+        parsed = False
+        if line_data:
+            result = re.match(self.line_regex, line_data)
+            if result:
+                try:
+                    data['timestamp'] = datetime.strptime(result.group(1), self.date_format)
+                    data['text'] = result.group(2)
+                    parsed = True
+                except ValueError:
+                    self.logger.debug(f"Invalid Value: {result.group(1)}")
+        if not parsed:
+            self.logger.debug(f"Parsing Failed: {line_data}")
         return data
 
-    def convert_date(self, date_string):
-        try:
-            return datetime.strptime(date_string, self.date_format)
-        except ValueError:
-            return None

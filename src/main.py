@@ -16,35 +16,34 @@ import logging
 import sys
 import time
 from pathlib import Path
-from src.util.logparser import LogParser
-from src.util.linefilter import LineFilter
+from src.util.logfilehandler import LogFileHandler
 from docopt import docopt
 
 
-def testing_parser(log_file):
-    if log_file and log_file.is_file():
-        parser = LogParser(log_file)
-        event_filter = LineFilter()
-        try:
-            for parsed_line in parser.run():
-                if parsed_line:
-                    print(parsed_line)
-        except KeyboardInterrupt:
-            parser.run().close()
-        finally:
-            sys.exit()
+def start_parser(log_handler):
+    try:
+        for parsed_line in log_handler.run_parser():
+            if parsed_line:
+                print(parsed_line)
+    except KeyboardInterrupt:
+        log_handler.run_parser().close()
+    finally:
+        sys.exit()
 
 
 def main():
-    log_file = Path(arguments.get('--log'))
+    version = '0.0.5 alpha'
+    arguments = docopt(__doc__, help=True, options_first=True, version=version)
     if arguments.get('--debug'):
         logging.basicConfig(level=logging.DEBUG)
     logger = logging.getLogger(__name__)
+    log_file = Path(arguments.get('--log'))
+    log_handler = LogFileHandler(log_file)
+    player_data = log_handler.parse_file_name()
+    print(f"Everquest Log Parser ({version}) - {player_data['character']} : {player_data['server']}")
     logger.debug(f"Log File: {log_file.name}")
-    testing_parser(log_file)
+    start_parser(log_handler)
 
 
 if __name__ == '__main__':
-    version = '0.0.4 alpha'
-    arguments = docopt(__doc__, help=True, options_first=True, version=version)
     main()
