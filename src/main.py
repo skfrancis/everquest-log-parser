@@ -16,7 +16,7 @@ import logging
 import sys
 import time
 from pathlib import Path
-from src.util.logfilehandler import LogFileHandler
+from util.logfilehandler import LogFileHandler
 from docopt import docopt
 
 

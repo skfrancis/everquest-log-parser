@@ -1,4 +1,4 @@
-from src.filters.basicfilter import BasicFilter
+from basicfilter import BasicFilter
 
 
 class ExpAAFilter(BasicFilter):

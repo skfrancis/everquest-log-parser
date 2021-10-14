@@ -3,7 +3,7 @@ import logging
 from os import SEEK_END
 from pathlib import Path
 from datetime import datetime
-from src.util.lineparser import LineParser
+from util.lineparser import LineParser
 
 
 class LogFileHandler:

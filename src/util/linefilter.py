@@ -1,9 +1,9 @@
-from src.filters.fightfilters import BattleFilter
-from src.filters.lootfilters import LootFilter, LootCoinFilter, LootRotFilter
-from src.filters.expfilters import ExpFilter, ExpAAFilter, SkillUpFilter
-from src.filters.utilityfilters import CastingFilter, ConsiderFilter, FactionFilter, PetLeaderFilter, WhoFilter, ZoneFilter
-from src.filters.generalfilters import ChatFilter, DiceFilter, LocationFilter
-from src.filters.generalfilters import PartyFilter, TradesFilter, SystemMessageFilter
+from filters.fightfilters import BattleFilter
+from filters.lootfilters import LootFilter, LootCoinFilter, LootRotFilter
+from filters.expfilters import ExpFilter, ExpAAFilter, SkillUpFilter
+from filters.utilityfilters import CastingFilter, ConsiderFilter, FactionFilter, PetLeaderFilter, WhoFilter, ZoneFilter
+from filters.generalfilters import ChatFilter, DiceFilter, LocationFilter
+from filters.generalfilters import PartyFilter, TradesFilter, SystemMessageFilter
 
 
 class LineFilter:

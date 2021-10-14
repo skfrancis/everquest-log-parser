@@ -1,6 +1,6 @@
 import pytest
 from types import GeneratorType
-from src.util.logfilehandler import LogFileHandler
+from util.logfilehandler import LogFileHandler
 
 
 class TestLogFileHandler:
