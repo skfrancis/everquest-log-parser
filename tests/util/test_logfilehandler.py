@@ -1,5 +1,4 @@
 import pytest
-from types import GeneratorType
 from util.logfilehandler import LogFileHandler
 
 
@@ -21,14 +20,6 @@ class TestLogFileHandler:
         invalid_file.write_text("\n".join(file_data))
         files.append(invalid_file)
         return files
-
-    # TODO: Figure out best way to test this
-    def test_run_parser(self, build_files):
-        for file in build_files:
-            handler = LogFileHandler(file)
-            parser = handler.run_parser()
-            if parser:
-                assert type(parser) == GeneratorType
 
     def test_load_log_file(self, build_files):
         for file in build_files:
