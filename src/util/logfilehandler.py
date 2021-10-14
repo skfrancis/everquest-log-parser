@@ -25,7 +25,7 @@ class LogFileHandler:
         self.logger.debug(f"Log File Parsed Data: {player_data}")
         return player_data
 
-    def run_parser(self):
+    def run_parser(self):  # pragma: no cover
         if self.log_file.exists() and self.log_file.is_file() and self.character_info:
             with self.log_file.open('r', encoding="utf8") as open_file:
                 open_file.seek(0, SEEK_END)
