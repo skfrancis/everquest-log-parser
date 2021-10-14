@@ -23,4 +23,4 @@ jobs:
         run: |
           pip install pytest
           pip install pytest-cov
-          pytest --doctest-modules --exitfirst --verbose --failed-first --cov=. --cov-report
+          pytest --doctest-modules --exitfirst --verbose --failed-first --cov=. --cov-report term
