@@ -1,3 +1,8 @@
+# application dependencies
 docopt
 regex
 pyttsx3
+
+# application testing dependencies
+pytest
+pytest-cov

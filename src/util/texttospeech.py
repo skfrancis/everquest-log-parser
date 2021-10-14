@@ -7,15 +7,18 @@ class TextToSpeech:
         self.logger = logging.getLogger(__name__)
         self.engine = pyttsx3.init()
 
-    def speak(self, text_to_speak):  # pragma: no cover
+    def speak(self, text_to_speak):
         self.engine.say(text_to_speak)
         self.engine.runAndWait()
 
     def get_voice(self):
-        return self.engine.getProperty('voice')
+        voice = self.engine.getProperty('voice')
+        self.logger.debug(f"Voice is currently: {voice}")
+        return voice
 
     def set_voice(self, voice_id):
         self.engine.setProperty('voice', voice_id)
+        self.engine.runAndWait()
 
     def get_voices(self):
         voice_data = []
@@ -28,7 +31,7 @@ class TextToSpeech:
         return voice_data
 
     def get_volume(self):
-        volume = float(self.engine.getProperty('volume').__str__()) * 100
+        volume = int(float(self.engine.getProperty('volume').__str__()) * 100)
         self.logger.debug(f"Volume is currently: {volume}")
         return volume
 
