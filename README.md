@@ -1,6 +1,6 @@
 [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
-[![GPLv3 license](https://img.shields.io/badge/License-GPLv3-blue.svg)](http://perso.crans.org/besson/LICENSE.html)
-![GitHub last commit](https://img.shields.io/github/last-commit/skfrancis/everquest-log-parser)
+[![GPLv3 license](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://github.com/skfrancis/everquest-log-parser/blob/main/LICENSE)
+[![GitHub last commit](https://img.shields.io/github/last-commit/skfrancis/everquest-log-parser)](https://github.com/skfrancis/everquest-log-parser/graphs/commit-activity)
 [![Pytest](https://github.com/skfrancis/everquest-log-parser/actions/workflows/pytests.yml/badge.svg)](https://github.com/skfrancis/everquest-log-parser/actions/workflows/pytests.yml)
 # Everquest Log Parser 
 
