@@ -1,7 +1,7 @@
 from filters.basicfilter import BasicFilter
 
 
-class LootRotFilter(BasicFilter):
+class RotFilter(BasicFilter):
     def __init__(self):
         name = 'Rot'
         columns = ['Date', 'Time', 'Source', 'Quantity', 'Item']

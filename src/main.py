@@ -6,7 +6,7 @@ Usage:
 
 Options:
   -h --help          Show this screen
-  -l --log Log_file  Load specific log file
+  -l --log log_file  Load specific log file
   --debug            Debug Mode
   --version          Show Version
 

@@ -1,5 +1,5 @@
 from abc import ABC
-from basicfilter import BasicFilter
+from filters.basicfilter import BasicFilter
 
 
 class FightFilter(BasicFilter, ABC):

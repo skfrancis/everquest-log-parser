@@ -1,7 +1,7 @@
 from filters.basicfilter import BasicFilter
 
 
-class LootCoinFilter(BasicFilter):
+class CoinFilter(BasicFilter):
     def __init__(self):
         name = 'Looted Coin'
         columns = ['Date', 'Time', 'Looter', 'Platinum', 'Gold', 'Silver', 'Copper']

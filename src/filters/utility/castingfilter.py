@@ -1,4 +1,4 @@
-from basicfilter import BasicFilter
+from filters.basicfilter import BasicFilter
 
 
 class CastingFilter(BasicFilter):
