@@ -14,34 +14,20 @@
   - Live log file reading
   - Log file processor
 - Text to Speech Utility
-- Parse Filters
-  - Experience
-    - AAs
-    - Regular Experience
-    - Skills
-  - Fight
-    - Death
-    - Healing
-    - Physical
-    - Spell
-  - General
-    - Chat
-    - Randoms
-    - Location
-    - Party
-    - System Message
-    - Tradeskills
-  - Loot
-    - Coin
-    - Looted Items
-    - Rot Items
-  - Utility
-    - Casting / Singing Messages
-    - Consider
-    - Faction
-    - Pet Leader
-    - Who command
-    - Zoning
+- Parse Filters:
+
+|Experience  |Fight   |General       |Loot |Utility    |
+|------------|--------|--------------|-----|-----------|
+|AAs         |Physical|Chats         |Coin |Casting    |
+|Experience  |Spells  |Randoms       |Items|Consider   |
+|Skills      |Healing |Location      |Rot  |Faction    |
+|            |Death   |Party         |     |Pet Leader |
+|            |        |System Message|     |Who Command|
+|            |        |Tradeskills   |     |Zoning     |
 
 ### Working Functionality
-- Live basic parse object printed to standard output
+- Parses Live log entry into a basic parse object 
+  - {date, log text}
+- Filters parse object through parse filters above to create event object 
+  - {name, columns, filter object}
+- Prints event object to standard output

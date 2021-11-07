@@ -12,27 +12,44 @@ Options:
 
 """
 
-import logging
+
 import sys
 import time
+import logging
 from pathlib import Path
-from util.logfilehandler import LogFileHandler
 from docopt import docopt
+from events.expevent import ExpEvent
+from events.lootevent import LootEvent
+from events.fightevent import FightEvent
+from events.generalevent import GeneralEvent
+from events.utilityevent import UtilityEvent
+from util.logfilehandler import LogFileHandler
 
 
 def start_parser(log_handler):
     try:
         for parsed_line in log_handler.run_parser():
             if parsed_line:
-                print(parsed_line)
+                result = event_filter(parsed_line)
+                if result:
+                    print(result)
     except KeyboardInterrupt:
         log_handler.run_parser().close()
     finally:
         sys.exit()
 
 
+def event_filter(parsed_line):
+    event_list = [FightEvent(), ExpEvent(), LootEvent(), GeneralEvent(), UtilityEvent()]
+    for event in event_list:
+        result = event.process_event_filter(parsed_line)
+        if result:
+            return result
+    return None
+
+
 def main():
-    version = '0.0.5 alpha'
+    version = '0.0.6 alpha'
     arguments = docopt(__doc__, help=True, options_first=True, version=version)
     if arguments.get('--debug'):
         logging.basicConfig(level=logging.DEBUG)
