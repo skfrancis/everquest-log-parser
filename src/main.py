@@ -18,9 +18,9 @@ import time
 import logging
 from pathlib import Path
 from docopt import docopt
-from events.expevent import ExpEvent
 from events.lootevent import LootEvent
 from events.fightevent import FightEvent
+from events.benefitevent import BenefitEvent
 from events.generalevent import GeneralEvent
 from events.utilityevent import UtilityEvent
 from util.logfilehandler import LogFileHandler

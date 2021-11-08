@@ -1,6 +1,6 @@
 import pytest
 from util.lineparser import LineParser
-from filters.exp.expfilter import ExpFilter
+from filters.benefit.expfilter import ExpFilter
 
 
 class TestExpFilter:

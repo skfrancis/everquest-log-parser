@@ -16,12 +16,12 @@
 - Text to Speech Utility
 - Parse Filters:
 
-|Experience  |Fight   |General       |Loot |Utility    |
+|Benefit     |Fight   |General       |Loot |Utility    |
 |------------|--------|--------------|-----|-----------|
 |AAs         |Physical|Chats         |Coin |Casting    |
-|Experience  |Spells  |Randoms       |Items|Consider   |
-|Skills      |Healing |Location      |Rot  |Faction    |
-|            |Death   |Party         |     |Pet Leader |
+|Skills      |Spells  |Randoms       |Items|Consider   |
+|Experience  |Healing |Location      |Rot  |Faction    |
+|Achievements|Death   |Party         |     |Pet Leader |
 |            |        |System Message|     |Who Command|
 |            |        |Tradeskills   |     |Zoning     |
 

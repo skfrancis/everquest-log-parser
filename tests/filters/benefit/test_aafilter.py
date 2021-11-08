@@ -1,15 +1,15 @@
 import pytest
 from util.lineparser import LineParser
-from filters.exp.skillsfilter import SkillsFilter
+from filters.benefit.aafilter import AAFilter
 
 
-class TestSkillsFilter:
+class TestAAFilter:
     @pytest.fixture
     def parse_data(self):
         parser = LineParser()
         log_data = [
             '[Sat Jan 31 23:59:59 2020] Welcome to EverQuest!',
-            '[Sat Jan 31 23:59:59 2020] You have become better at 1H Slashing! (11)'
+            '[Sat Jan 31 23:59:59 2020] You have gained 2 ability point(s)!  You now have 39 ability point(s).'
         ]
         parsed_data = []
         for line in log_data:
@@ -17,9 +17,10 @@ class TestSkillsFilter:
         return parsed_data
 
     def test_process_data(self, parse_data):
-        filterer = SkillsFilter()
+        filterer = AAFilter()
         assert filterer.filter(parse_data[0]) is None
         filtered_data = filterer.filter(parse_data[1])
         assert type(filtered_data) == dict
-        assert filtered_data.get('Skill') == '1H Slashing'
-        assert filtered_data.get('Level') == '11'
+        assert filtered_data.get('Banked') == '39'
+        assert filtered_data.get('Gained') == '2'
+

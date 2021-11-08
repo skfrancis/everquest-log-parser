@@ -1,6 +1,6 @@
 import pytest
 from util.lineparser import LineParser
-from filters.loot.coinfilter import LootCoinFilter
+from filters.loot.coinfilter import CoinFilter
 
 
 class TestCoinFilter:
@@ -26,7 +26,7 @@ class TestCoinFilter:
         return parsed_data
 
     def test_process_data(self, parse_data):
-        filterer = LootCoinFilter()
+        filterer = CoinFilter()
         assert filterer.filter(parse_data[0]) is None
         for index in range(1, 9):
             filtered_data = filterer.filter(parse_data[index])

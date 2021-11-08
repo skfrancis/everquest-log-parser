@@ -6,7 +6,7 @@ class LootFilter(BasicFilter):
         name = 'Loot'
         columns = ['Date', 'Time', 'Looter', 'Quantity', 'Item', 'Source']
         regexes = [
-            r"^--(\w+) \w+ looted (an?|\d+) ([^.]+) from ([^.]+)?\s?\.--$",
+            r"--(\w+) \w+ looted (an?|\d+) (.+?) from (.+?)?\s?\.--$",
             r"^(\w+) grabbed (an?|\d+) (.+) from ([^.]+?)\s?\.$"
         ]
         super().__init__(name, columns, regexes)
