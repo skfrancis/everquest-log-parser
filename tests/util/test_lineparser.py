@@ -1,5 +1,4 @@
 import pytest
-
 from util.lineparser import LineParser
 from datetime import datetime
 
