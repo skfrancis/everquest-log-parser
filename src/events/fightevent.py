@@ -1,11 +1,11 @@
-from events.eventhandler import EventHandler
+from events.eventfilter import EventFilter
 from filters.fight.physicalfilter import PhysicalFilter
 from filters.fight.spellfilter import SpellFilter
 from filters.fight.healingfilter import HealingFilter
 from filters.fight.deathfilter import DeathFilter
 
 
-class FightEvent(EventHandler):
+class FightEvent(EventFilter):
     def __init__(self):
         event_filters = [
             PhysicalFilter(),

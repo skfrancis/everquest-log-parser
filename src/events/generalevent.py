@@ -1,4 +1,4 @@
-from events.eventhandler import EventHandler
+from events.eventfilter import EventFilter
 from filters.general.chatfilter import ChatFilter
 from filters.general.dicefilter import DiceFilter
 from filters.general.locationfilter import LocationFilter
@@ -7,7 +7,7 @@ from filters.general.systemmessagefilter import SystemMessageFilter
 from filters.general.tradesfilter import TradesFilter
 
 
-class GeneralEvent(EventHandler):
+class GeneralEvent(EventFilter):
     def __init__(self):
         event_filters = [
             ChatFilter(),

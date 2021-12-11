@@ -1,4 +1,4 @@
-class EventHandler:
+class EventFilter:
     def __init__(self, event_filters):
         self.event_filters = event_filters
 

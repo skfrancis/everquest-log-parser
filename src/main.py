@@ -18,34 +18,22 @@ import time
 import logging
 from pathlib import Path
 from docopt import docopt
-from events.lootevent import LootEvent
-from events.fightevent import FightEvent
-from events.benefitevent import BenefitEvent
-from events.generalevent import GeneralEvent
-from events.utilityevent import UtilityEvent
+from events.eventshandler import EventsHandler
 from util.logfilehandler import LogFileHandler
 
 
 def start_parser(log_handler):
+    events_handler = EventsHandler()
     try:
         for parsed_line in log_handler.run_parser():
             if parsed_line:
-                result = event_filter(parsed_line)
+                result = events_handler.process_events(parsed_line)
                 if result:
                     print(result)
     except KeyboardInterrupt:
         log_handler.run_parser().close()
     finally:
         sys.exit()
-
-
-def event_filter(parsed_line):
-    event_list = [FightEvent(), ExpEvent(), LootEvent(), GeneralEvent(), UtilityEvent()]
-    for event in event_list:
-        result = event.process_event_filter(parsed_line)
-        if result:
-            return result
-    return None
 
 
 def main():
