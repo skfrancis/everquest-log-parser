@@ -7,7 +7,7 @@ from events.utilityevent import UtilityEvent
 
 class EventsHandler:
     def __init__(self):
-        self.event_list = [FightEvent(), ExpEvent(), LootEvent(), GeneralEvent(), UtilityEvent()]
+        self.event_list = [FightEvent(), BenefitEvent(), LootEvent(), GeneralEvent(), UtilityEvent()]
 
     def process_events(self, parsed_line):
         for event in self.event_list:
