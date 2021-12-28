@@ -2,6 +2,7 @@
 docopt
 regex
 pyttsx3
+sqlalchemy
 
 # application testing dependencies
 pytest

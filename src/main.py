@@ -20,9 +20,10 @@ from pathlib import Path
 from docopt import docopt
 from events.eventshandler import EventsHandler
 from util.logfilehandler import LogFileHandler
+from db.dbhandler import DBHandler
 
 
-def start_parser(log_handler):
+def start_parser(log_handler, db_handler):
     events_handler = EventsHandler()
     try:
         for parsed_line in log_handler.run_parser():
@@ -37,6 +38,7 @@ def start_parser(log_handler):
 
 
 def main():
+    app_path = Path.cwd()
     version = '0.0.6 alpha'
     arguments = docopt(__doc__, help=True, options_first=True, version=version)
     if arguments.get('--debug'):
@@ -44,10 +46,11 @@ def main():
     logger = logging.getLogger(__name__)
     log_file = Path(arguments.get('--log'))
     log_handler = LogFileHandler(log_file)
-    player_data = log_handler.parse_file_name()
+    player_data = log_handler.character_info
+    db_handler = DBHandler(app_path, player_data)
     print(f"Everquest Log Parser ({version}) - {player_data['character']} : {player_data['server']}")
     logger.debug(f"Log File: {log_file.name}")
-    start_parser(log_handler)
+    start_parser(log_handler, db_handler)
 
 
 if __name__ == '__main__':
