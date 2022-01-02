@@ -6,7 +6,7 @@ Usage:
 
 Options:
   -h --help          Show this screen
-  -l --log log_file  Load specific log file
+  -l --log log_file  Load specified log file
   --debug            Debug Mode
   --version          Show Version
 
@@ -18,9 +18,10 @@ import time
 import logging
 from pathlib import Path
 from docopt import docopt
+from db.dbhandler import DBHandler
+from util.confighandler import ConfigHandler
 from events.eventshandler import EventsHandler
 from util.logfilehandler import LogFileHandler
-from db.dbhandler import DBHandler
 
 
 def start_parser(log_handler, db_handler):
@@ -39,17 +40,21 @@ def start_parser(log_handler, db_handler):
 
 def main():
     app_path = Path.cwd()
-    version = '0.0.6 alpha'
-    arguments = docopt(__doc__, help=True, options_first=True, version=version)
+    config = ConfigHandler(app_path)
+    arguments = docopt(__doc__, help=True, options_first=True, version=config.version)
     if arguments.get('--debug'):
         logging.basicConfig(level=logging.DEBUG)
     logger = logging.getLogger(__name__)
-    log_file = Path(arguments.get('--log'))
-    log_handler = LogFileHandler(log_file)
-    player_data = log_handler.character_info
-    db_handler = DBHandler(app_path, player_data)
-    print(f"Everquest Log Parser ({version}) - {player_data['character']} : {player_data['server']}")
-    logger.debug(f"Log File: {log_file.name}")
+    config.log_file = Path(arguments.get('--log'))
+    logger.debug(f"Log File: {config.log_file.name}")
+    log_handler = LogFileHandler(config)
+    if log_handler.character_info:
+        config.log_table_config(log_handler.character_info)
+    else:
+        sys.exit(f"Log File: {config.log_file} is Invalid or Does Not Exist")
+    print(f"Everquest Log Parser ({config.version}): {config.character_info['character']} - "
+          f"{config.character_info['server']}")
+    db_handler = DBHandler(config)
     start_parser(log_handler, db_handler)
 
 

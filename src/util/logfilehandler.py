@@ -7,22 +7,25 @@ from util.lineparser import LineParser
 
 
 class LogFileHandler:
-    def __init__(self, log_file):
+    def __init__(self, config_handler):
         self.logger = logging.getLogger(__name__)
         self.parser = LineParser()
         self.file_name_regex = re.compile(r'^eqlog_(\w+)_(\w+).txt$')
-        self.log_file = Path(log_file)
+        self.log_file = Path(config_handler.log_file)
         self.character_info = self.parse_file_name()
 
     def parse_file_name(self):
         player_data = {}
-        result = re.search(self.file_name_regex, self.log_file.name)
-        if result:
-            player_data['character'] = result.group(1).capitalize()
-            player_data['server'] = result.group(2).capitalize()
+        if self.log_file.exists() and self.log_file.is_file():
+            result = re.search(self.file_name_regex, self.log_file.name)
+            if result:
+                player_data['character'] = result.group(1).capitalize()
+                player_data['server'] = result.group(2).capitalize()
+                self.logger.debug(f"Log File Parsed Data: {player_data}")
+            else:
+                self.logger.debug(f"Invalid Log File: {self.log_file.name}")
         else:
-            self.logger.debug(f"Invalid Log File Name: {self.log_file.name}")
-        self.logger.debug(f"Log File Parsed Data: {player_data}")
+            self.logger.debug(f"No Such Log File: {self.log_file.name}")
         return player_data
 
     def run_parser(self):
@@ -33,7 +36,7 @@ class LogFileHandler:
                     line = open_file.readline()
                     if line:
                         parsed_line = self.parser.parse_line(line)
-                        self.logger.debug(parsed_line)
+                        self.logger.debug(f"Ignored Line: {parsed_line}")
                         yield parsed_line
         else:
             self.logger.debug(f"Invalid Log File Name: {self.log_file.name}")

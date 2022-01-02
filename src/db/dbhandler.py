@@ -3,11 +3,12 @@ from sqlalchemy import create_engine, MetaData, Table, Column, String, DateTime
 
 
 class DBHandler:
-    def __init__(self, app_path, player_data):
+    def __init__(self, config_handler):
         self.logger = logging.getLogger(__name__)
-        self.player_data = player_data
-        self.db_path = app_path / 'config'
+        self.config_handler = config_handler
+        self.db_path = config_handler.app_path / 'config'
         self.engine = self.build_engine()
+        self.metadata = MetaData()
         self.create_table_models()
 
     def build_engine(self):
@@ -17,12 +18,14 @@ class DBHandler:
         return create_engine(f"sqlite:///{db_file}", echo=False)
 
     def create_table_models(self):
-        metadata = MetaData()
-        log_table = self.player_data['character'] + '_' + self.player_data['server']
-        self.logger.debug(f"Log Table: {log_table}")
+        self.logger.debug(f"Log Table: {self.config_handler.log_table}")
         Table(
-            log_table, metadata,
+            self.config_handler.log_table, self.metadata,
             Column('timestamp', DateTime),
             Column('text', String)
         )
         metadata.create_all(self.engine, checkfirst=True)
+
+    def insert(self, table, data):
+        db_table = Table(table, self.metadata, autoload=True, autoload_with=self.engine)
+        return self.engine.execute(db_table.insert(), data)
