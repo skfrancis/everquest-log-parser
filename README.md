@@ -16,14 +16,14 @@
 - Text to Speech Utility
 - Parse Filters:
 
-|Benefit     |Fight   |General       |Loot |Utility    |
-|------------|--------|--------------|-----|-----------|
-|AAs         |Physical|Chats         |Coin |Casting    |
-|Skills      |Spells  |Randoms       |Items|Consider   |
-|Experience  |Healing |Location      |Rot  |Faction    |
-|Achievements|Death   |Party         |     |Pet Leader |
-|            |        |System Message|     |Who Command|
-|            |        |Tradeskills   |     |Zoning     |
+| Benefit      | Fight    | General        | Loot  | Utility     |
+|--------------|----------|----------------|-------|-------------|
+| AAs          | Physical | Chats          | Coin  | Casting     |
+| Skills       | Spells   | Randoms        | Items | Consider    |
+| Experience   | Healing  | Location       | Rot   | Faction     |
+| Achievements | Death    | Party          |       | Pet Leader  |
+|              |          | System Message |       | Who Command |
+|              |          | Tradeskills    |       | Zoning      |
 
 ### Working Functionality
 - Parses Live log entry into a basic parse object 
