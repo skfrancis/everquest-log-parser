@@ -1,4 +1,7 @@
+from pathlib import Path
+
 import pytest
+from src.util.confighandler import ConfigHandler
 from src.util.logfilehandler import LogFileHandler
 
 
@@ -13,17 +16,21 @@ class TestLogFileHandler:
             'Welcome to Everquest!',
             ''
         ]
-        log_file = tmp_path_factory.mktemp('Logs') / 'eqlog_Character_server.txt'
+        logs_dir = tmp_path_factory.mktemp('Logs')
+        log_file = logs_dir / 'eqlog_Character_server.txt'
         log_file.write_text("\n".join(file_data))
         files.append(log_file)
-        invalid_file = tmp_path_factory.mktemp('Logs') / 'log.txt'
+        invalid_file = logs_dir / 'log.txt'
         invalid_file.write_text("\n".join(file_data))
         files.append(invalid_file)
         return files
 
     def test_load_log_file(self, build_files):
+        app_path = Path.cwd()
         for file in build_files:
-            handler = LogFileHandler(file)
+            config = ConfigHandler(app_path)
+            config.log_file = file
+            handler = LogFileHandler(config)
             file_data = handler.load_log_file()
             if file_data:
                 assert type(file_data) == list

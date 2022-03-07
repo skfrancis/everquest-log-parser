@@ -47,6 +47,7 @@ class LogFileHandler:
             return self.parse_log_data(log_line_data)
         else:
             self.logger.debug(f"Invalid Log File Name: {self.log_file.name}")
+            return None
 
     def process_log_data(self):
         with self.log_file.open('r', encoding="utf8") as open_file:
