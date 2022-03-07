@@ -1,10 +1,10 @@
-from events.eventfilter import EventFilter
-from filters.utility.castingfilter import CastingFilter
-from filters.utility.considerfilter import ConsiderFilter
-from filters.utility.factionfilter import FactionFilter
-from filters.utility.petleaderfilter import PetLeaderFilter
-from filters.utility.whofilter import WhoFilter
-from filters.utility.zonefilter import ZoneFilter
+from src.events.eventfilter import EventFilter
+from src.filters.utility.castingfilter import CastingFilter
+from src.filters.utility.considerfilter import ConsiderFilter
+from src.filters.utility.factionfilter import FactionFilter
+from src.filters.utility.petleaderfilter import PetLeaderFilter
+from src.filters.utility.whofilter import WhoFilter
+from src.filters.utility.zonefilter import ZoneFilter
 
 
 class UtilityEvent(EventFilter):

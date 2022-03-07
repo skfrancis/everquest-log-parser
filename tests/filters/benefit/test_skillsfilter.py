@@ -1,6 +1,6 @@
 import pytest
-from util.lineparser import LineParser
-from filters.benefit.skillsfilter import SkillsFilter
+from src.util.lineparser import LineParser
+from src.filters.benefit.skillsfilter import SkillsFilter
 
 
 class TestSkillsFilter:

@@ -1,8 +1,8 @@
-from events.eventfilter import EventFilter
-from filters.benefit.aafilter import AAFilter
-from filters.benefit.expfilter import ExpFilter
-from filters.benefit.skillsfilter import SkillsFilter
-from filters.benefit.achievementfilter import AchievementFilter
+from src.events.eventfilter import EventFilter
+from src.filters.benefit.aafilter import AAFilter
+from src.filters.benefit.expfilter import ExpFilter
+from src.filters.benefit.skillsfilter import SkillsFilter
+from src.filters.benefit.achievementfilter import AchievementFilter
 
 
 class BenefitEvent(EventFilter):

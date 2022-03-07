@@ -14,7 +14,6 @@ Options:
 
 
 import sys
-import time
 import logging
 from pathlib import Path
 from docopt import docopt

@@ -24,7 +24,7 @@ class DBHandler:
             Column('timestamp', DateTime),
             Column('text', String)
         )
-        metadata.create_all(self.engine, checkfirst=True)
+        self.metadata.create_all(self.engine, checkfirst=True)
 
     def insert(self, table, data):
         db_table = Table(table, self.metadata, autoload=True, autoload_with=self.engine)

@@ -1,8 +1,8 @@
-from events.lootevent import LootEvent
-from events.fightevent import FightEvent
-from events.benefitevent import BenefitEvent
-from events.generalevent import GeneralEvent
-from events.utilityevent import UtilityEvent
+from src.events.lootevent import LootEvent
+from src.events.fightevent import FightEvent
+from src.events.benefitevent import BenefitEvent
+from src.events.generalevent import GeneralEvent
+from src.events.utilityevent import UtilityEvent
 
 
 class EventsHandler:

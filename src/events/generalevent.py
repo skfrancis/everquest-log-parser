@@ -1,10 +1,10 @@
-from events.eventfilter import EventFilter
-from filters.general.chatfilter import ChatFilter
-from filters.general.dicefilter import DiceFilter
-from filters.general.locationfilter import LocationFilter
-from filters.general.partyfilter import PartyFilter
-from filters.general.systemmessagefilter import SystemMessageFilter
-from filters.general.tradesfilter import TradesFilter
+from src.events.eventfilter import EventFilter
+from src.filters.general.chatfilter import ChatFilter
+from src.filters.general.dicefilter import DiceFilter
+from src.filters.general.locationfilter import LocationFilter
+from src.filters.general.partyfilter import PartyFilter
+from src.filters.general.systemmessagefilter import SystemMessageFilter
+from src.filters.general.tradesfilter import TradesFilter
 
 
 class GeneralEvent(EventFilter):

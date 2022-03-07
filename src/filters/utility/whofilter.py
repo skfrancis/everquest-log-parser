@@ -1,4 +1,4 @@
-from filters.basicfilter import BasicFilter
+from src.filters.basicfilter import BasicFilter
 
 
 class WhoFilter(BasicFilter):

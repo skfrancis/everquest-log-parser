@@ -1,5 +1,5 @@
 from string import capwords
-from filters.fightfilter import FightFilter
+from src.filters.fightfilter import FightFilter
 
 
 class SpellFilter(FightFilter):

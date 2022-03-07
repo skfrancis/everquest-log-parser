@@ -1,6 +1,6 @@
 import pytest
-from util.lineparser import LineParser
-from filters.loot.lootfilter import LootFilter
+from src.util.lineparser import LineParser
+from src.filters.loot.lootfilter import LootFilter
 
 
 class TestFilter:

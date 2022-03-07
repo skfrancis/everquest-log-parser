@@ -2,8 +2,7 @@ import re
 import logging
 from os import SEEK_END
 from pathlib import Path
-from datetime import datetime
-from util.lineparser import LineParser
+from src.util.lineparser import LineParser
 
 
 class LogFileHandler:

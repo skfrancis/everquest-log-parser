@@ -1,4 +1,4 @@
-from filters.basicfilter import BasicFilter
+from ..basicfilter import BasicFilter
 
 
 class RotFilter(BasicFilter):

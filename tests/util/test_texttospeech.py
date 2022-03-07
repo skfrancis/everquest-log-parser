@@ -1,5 +1,5 @@
 import pytest
-from util.texttospeech import TextToSpeech
+from src.util.texttospeech import TextToSpeech
 
 
 class TestTextToSpeech:

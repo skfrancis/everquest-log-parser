@@ -1,6 +1,6 @@
 import pytest
-from util.lineparser import LineParser
-from filters.benefit.aafilter import AAFilter
+from src.util.lineparser import LineParser
+from src.filters.benefit.aafilter import AAFilter
 
 
 class TestAAFilter:

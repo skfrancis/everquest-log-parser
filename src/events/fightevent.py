@@ -1,8 +1,8 @@
-from events.eventfilter import EventFilter
-from filters.fight.physicalfilter import PhysicalFilter
-from filters.fight.spellfilter import SpellFilter
-from filters.fight.healingfilter import HealingFilter
-from filters.fight.deathfilter import DeathFilter
+from src.events.eventfilter import EventFilter
+from src.filters.fight.physicalfilter import PhysicalFilter
+from src.filters.fight.spellfilter import SpellFilter
+from src.filters.fight.healingfilter import HealingFilter
+from src.filters.fight.deathfilter import DeathFilter
 
 
 class FightEvent(EventFilter):

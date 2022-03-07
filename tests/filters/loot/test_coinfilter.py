@@ -1,6 +1,6 @@
 import pytest
-from util.lineparser import LineParser
-from filters.loot.coinfilter import CoinFilter
+from src.util.lineparser import LineParser
+from src.filters.loot.coinfilter import CoinFilter
 
 
 class TestCoinFilter:

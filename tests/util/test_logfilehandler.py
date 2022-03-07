@@ -1,5 +1,5 @@
 import pytest
-from util.logfilehandler import LogFileHandler
+from src.util.logfilehandler import LogFileHandler
 
 
 class TestLogFileHandler:

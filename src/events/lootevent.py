@@ -1,7 +1,7 @@
-from events.eventfilter import EventFilter
-from filters.loot.lootfilter import LootFilter
-from filters.loot.coinfilter import CoinFilter
-from filters.loot.rotfilter import RotFilter
+from src.events.eventfilter import EventFilter
+from src.filters.loot.lootfilter import LootFilter
+from src.filters.loot.coinfilter import CoinFilter
+from src.filters.loot.rotfilter import RotFilter
 
 
 class LootEvent(EventFilter):

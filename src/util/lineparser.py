@@ -6,7 +6,7 @@ from datetime import datetime
 class LineParser:
     def __init__(self):
         self.logger = logging.getLogger(__name__)
-        self.line_regex = re.compile(r'^\[(.*?)] (.*?)$')
+        self.line_regex = re.compile(r'^\[\w{3} (.{20})] (.*?)$')
         self.date_format = '%a %b %d %H:%M:%S %Y'
 
     def parse_line(self, line_data):
